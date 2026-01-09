@@ -216,7 +216,17 @@
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseMimeType: "application/json" } })
+                body: JSON.stringify({ 
+                    contents: [{ parts }], 
+                    generationConfig: { responseMimeType: "application/json" },
+                    safetySettings: [
+                        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_CIVIC_INTEGRITY", threshold: "BLOCK_NONE" }
+                    ]
+                })
               }
             );
 
@@ -252,7 +262,17 @@
                 headers: { 'Content-Type': 'application/json' },
                 // Requesting standard text response but prompting for image description or using available model capabilities
                 // Since actual image generation model endpoint might differ, we stick to text-based or standard multimodal
-                body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseModalities: ["image"] } })
+                body: JSON.stringify({ 
+                    contents: [{ parts }], 
+                    generationConfig: { responseModalities: ["image"] },
+                    safetySettings: [
+                        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+                        { category: "HARM_CATEGORY_CIVIC_INTEGRITY", threshold: "BLOCK_NONE" }
+                    ]
+                })
               }
             );
 
